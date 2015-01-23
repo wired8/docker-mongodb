@@ -7,10 +7,10 @@ if [ "${1:0:1}" = '-' ]; then
 fi
 
 if [ "$1" = 'mongod' ]; then
-    chown -R mongodb /data/db
     params=''
     if [ -n "$MONGO_ADMIN"  ]; then
         if [ -n "$MONGO_PASSWORD" ]; then
+            echo "Initializing MongoDb with Admin User"
             /tmp/scripts/initMongo.sh
             params="$params --auth"
         else
@@ -28,7 +28,7 @@ if [ "$1" = 'mongod' ]; then
         set -- $numa "$@" $params
     fi
 
-    exec gosu mongodb "$@" $params
+    exec "$@" $params
 fi
 
 exec "$@"

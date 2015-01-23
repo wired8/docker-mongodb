@@ -1,5 +1,5 @@
 #!/bin/bash
-gosu mongodb mongod --smallfiles --nojournal &
+mongod --smallfiles --nojournal &
 
 RET=1
 while [[ RET -ne 0 ]]; do
