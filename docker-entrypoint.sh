@@ -25,7 +25,7 @@ if [ "$1" = 'mongod' ]; then
 
     numa='numactl --interleave=all'
     if $numa true &> /dev/null; then
-        set -- $numa "$@" $params
+        set -- $numa "$@"
     fi
 
     exec gosu mongodb "$@" $params
