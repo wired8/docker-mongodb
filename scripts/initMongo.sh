@@ -2,6 +2,7 @@
 gosu mongodb mongod --smallfiles --nojournal &
 
 RET=1
+if [ ! -f '/opt/mongo_init.sema' ]; then
 while [[ RET -ne 0 ]]; do
     echo "=> Waiting for confirmation of MongoDB service startup"
     sleep 5
@@ -21,3 +22,8 @@ fi
 
 mongo admin --eval "db.shutdownServer();"
 echo "=> Done!"
+
+touch /opt/mongo_init.sema
+
+fi
+
